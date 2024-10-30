@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conto alla Rovescia</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #countdown {
+            font-size: 24px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="countdown">Calcolo in corso...</div>
+
+    <script>
+        function updateCountdown() {
+            const now = new Date();
+            const endOfDay = new Date(now);
+            endOfDay.setHours(23, 59, 59, 999); // Imposta le 23:59:59 di oggi
+
+            const millisecondsRemaining = endOfDay - now;
+
+            const hoursRemaining = Math.floor(millisecondsRemaining / (1000 * 60 * 60));
+            const minutesRemaining = Math.floor((millisecondsRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const secondsRemaining = Math.floor((millisecondsRemaining % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown').textContent = 
+                `Mancano ${hoursRemaining} ore, ${minutesRemaining} minuti e ${secondsRemaining} secondi alla fine della giornata.`;
+        }
+
+        // Aggiorna il conteggio ogni secondo
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Avvio iniziale
+    </script>
+</body>
+</html>
